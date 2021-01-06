@@ -1,0 +1,14 @@
+
+ <script>
+ function ping(extServer){
+     var ImageObject = new Image();
+     ImageObject.src = "http://"+extServer+"/URL/to-a-known-image.jpg"; //e.g. logo -- mind the caching, maybe use a dynamic querystring
+     if(ImageObject.height>0){
+       alert("Ping worked!");
+     } else {
+       alert("Ping failed :(");
+     }
+
+}
+ping('192.168.1.1');
+</script>

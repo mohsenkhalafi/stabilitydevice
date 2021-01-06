@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="en"><head>
+   <meta http-equiv="content-type" content="text/html; charset=utf-8"/> 
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="assets/favicon.ico">
+
+    <title></title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="assets/css/bootstrap.css" rel="stylesheet">
+    <link href="assets/css/font-awesome.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="assets/css/dashboard.css" rel="stylesheet">
+</head>
+
+<body>
+<nav class="navbar navbar-dark sticky-top bg-info flex-md-nowrap p-0">
+    <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">لیست مراکز</a>
+    <ul class="navbar-nav px-3">
+        <li class="nav-item text-nowrap">
+         <li class="nav-item text-nowrap">
+         مراکز قطع  شده :<p id="demo"></p>
+		 <button onclick="showNotification();">252 </button>
+		 <div id='hsBoard'>
+	  مشاهده
+	    </div>
+	    <br />
+	    
+	    </body>
+	    </html>
+        </li>
+    </ul>
+</nav>
+
+ <script type="text/javascript">
+
+
+
+function notify() {
+			
+			var option = {
+				body: <?php $myfile = fopen("server.txt", "r") or die("Unable to open file!");
+// Output one line until end-of-file
+while(!feof($myfile)) {
+  echo fgets($myfile) . "<br>";
+}
+fclose($myfile); ?> ,
+				icon: 'http://localhost/ircodex/javascript/notification/notification_icon2.jpg',
+				
+			}
+			
+			var notify = new Notification("3", option);
+			//alert(notify.title);
+			
+			setTimeout(function(){notify.close()}, 8000);
+			
+			notify.onshow = function(){
+				console.log('Notification showing...');
+			};
+			
+			notify.onclose = function(){
+				console.log('Notification closed!');
+			};
+			
+			notify.onerror = function(){
+				console.log('Notification error!');
+			};
+			
+			notify.onclick = function(){
+				console.log('Notification Click!');
+			};
+			
+		}
+		
+		function showNotification(){
+			
+			if ( !("Notification" in window) ) {
+				
+				console.error('Your browser does not support Notification');
+				//alert('Your browser does not support Notification');
+				
+			} else if ( Notification.permission === "granted" ) {
+				
+				notify();
+				
+			} else if ( Notification.permission !== "denied" ) {
+				
+				Notification.requestPermission(function(permission){
+					
+					if ( permission === "granted" ) {
+						
+						notify();
+						
+					}
+					
+				});
+				
+			}
+			
+		}
+		
+		
+		
+		</script>
+	
+
